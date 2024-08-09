@@ -7,7 +7,7 @@ import { NutritionistNFT__factory, UserNFT__factory, Treasury__factory, Communit
 //const wallet = new ethers.Wallet(PRIVATE_KEY, ethers.provider);
 //const encoder  =  new utils.AbiCoder()
 const encoder = ethers.utils.defaultAbiCoder;
-const treasuryAddr = "0xA1BEc8CfFe3bED25124384867C9369836190593e"
+const treasuryAddr = "0x9E1eF5A92C9Bf97460Cd00C0105979153EA45b27"
 const communityAddr = "0x3a65168B746766066288B83417329a7F901b5569"
 const userNftAddr = "0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A"
 const nutritionistNFTAddr = "0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0"
@@ -20,20 +20,20 @@ const linkTokenOp = "0xE4aB69C077896252FAFBD49EFD26B5D171A32410"
 const privateKey = process.env.PRIVATE_KEY as string;
 const wallet = new Wallet(privateKey);
 
-const rpc = "https://sepolia.base.org"
+const rpc = "https://sepolia-rollup.arbitrum.io/rpc"
 
 async function main() {
     //await deployCommunityContracts();
 
-    await setupNFTs(userNftAddr, nutritionistNFTAddr, communityAddr);
+    //await setupNFTs(userNftAddr, nutritionistNFTAddr, communityAddr);
     //await joinCommunity("0x3A3bc7C19bE0381294d8E7Bd311C123b76b33982");
 
 
-    // await verifyContract()
-    // const chainID = network.config.chainId;
-    // if (chainID != 31337) {
-    //     await verifyContract()
-    // }
+    await verifyContract()
+    const chainID = network.config.chainId;
+    if (chainID != 31337) {
+        await verifyContract()
+    }
 
     //await joinCommunity(communityContract);
 }
@@ -47,7 +47,7 @@ async function deployTreasury() {
     //const TreasuryFactory = new Treasury__factory(connectedWallet);
 
     const TreasuryFactory = await ethers.getContractFactory("Treasury");
-    const treasury = await TreasuryFactory.deploy();
+    const treasury = await TreasuryFactory.deploy({ gasLimit: 8000000 });
     await treasury.deployed();
     console.log("---- Treasury Contract was deployed to: ---- ", treasury.address);
     return treasury.address;
@@ -97,7 +97,7 @@ async function setupNFTs(userNFTAddr: any, nutritionistNFTAddr: any, communityAd
     const community = communityFactory.attach(communityAddr);
 
     try {
-        console.log("Setting up NFTs for superchain")
+        console.log("Setting up NFTs for Arbitrum")
         const tx = await community.setNFTs(userNFTAddr, nutritionistNFTAddr);
         await tx.wait();
         console.log("NFTs setup successful")
@@ -112,65 +112,65 @@ async function setupNFTs(userNFTAddr: any, nutritionistNFTAddr: any, communityAd
 
 
 async function deployCommunityContracts() {
-    console.log("Deploying Contracts for superchain....");
+    console.log("Deploying Contracts for Arbitrum....");
     let treasuryAddr;
     let communityAddr;
     try {
-        console.log("Deploying treasury for superchain");
+        console.log("Deploying treasury for Arbitrum");
         treasuryAddr = await deployTreasury();
 
         const CommunityFactory = await ethers.getContractFactory("CommunityNetwork"/*, wallet*/);
 
-        console.log("Deploying Community contract for superchain");
-        const community = await CommunityFactory.deploy(treasuryAddr);
+        console.log("Deploying Community contract for Arbitrum");
+        const community = await CommunityFactory.deploy(treasuryAddr, { gasLimit: 8000000 });
         await community.deployed();
         communityAddr = community.address;
-        console.log("---- Community Contract for superchain was deployed to superchain testnet at this address: ---- ", community.address);
+        console.log("---- Community Contract for Arbitrum was deployed to Arbitrum testnet at this address: ---- ", community.address);
     }
     catch (error) {
-        console.error("Error deploying Community for superchain:", error);
+        console.error("Error deploying Community for Arbitrum:", error);
         throw error;
     }
 
-    console.log("Deploying UserNFT for superchain....");
+    console.log("Deploying UserNFT for Arbitrum....");
     let userNFT;
     try {
         userNFT = await deployUserNFT(communityAddr);
     }
     catch (error) {
-        console.error("Error User NFT for superchain:", error);
+        console.error("Error User NFT for Arbitrum:", error);
         throw error;
     }
 
-    console.log("Deploying NutritionistNFT for superchain....");
+    console.log("Deploying NutritionistNFT for Arbitrum....");
     let nutritionistNFT;
     try {
         nutritionistNFT = await deployNutritionistNFT(communityAddr);
     }
     catch (error) {
-        console.error("Error Nutritionist NFT for superchain:", error);
+        console.error("Error Nutritionist NFT for Arbitrum:", error);
         throw error;
     }
 }
 
-// async function verifyContract() {
+async function verifyContract() {
 
-//     console.log(`Verifying user NFT contract for superchain...`);
+    console.log(`Verifying user NFT contract for Arbitrum...`);
 
-//     try {
-//         await run("verify:verify", {
-//             address: userNftAddr,
-//             constructorArguments: ["User NFT", "UST", communityAddr],
-//         });
-//         //console.log(`contract for ${chain.name} verified`);
-//     } catch (e: any) {
-//         if (e.message.toLowerCase().includes("already verified")) {
-//             console.log("Already verified!");
-//         } else {
-//             console.log(e);
-//         }
-//     }
-// }
+    try {
+        await run("verify:verify", {
+            address: userNftAddr,
+            constructorArguments: ["User NFT", "UST", communityAddr],
+        });
+        //console.log(`contract for ${chain.name} verified`);
+    } catch (e: any) {
+        if (e.message.toLowerCase().includes("already verified")) {
+            console.log("Already verified!");
+        } else {
+            console.log(e);
+        }
+    }
+}
 
 
 main().catch((error) => {

@@ -92,13 +92,18 @@ const config: HardhatUserConfig = {
       accounts: [`${process.env.PRIVATE_KEY}`],
     },
     arbitrumGoerli: {
-      url: "https://goerli-rollup.arbitrum.io/rpc",
+      url: "https://sepolia-rollup.arbitrum.io/rpc",
       chainId: 421613,
       accounts: [`${process.env.PRIVATE_KEY}`],
     },
     aurora: {
       url: "https://testnet.aurora.dev",
       chainId: 1313161555,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
+    arbitrumSepolia: {
+      url: "https://sepolia-rollup.arbitrum.io/rpc",
+      chainId: 421614,
       accounts: [`${process.env.PRIVATE_KEY}`],
     },
     bscTestnet: {
@@ -144,6 +149,14 @@ const config: HardhatUserConfig = {
       {
         network: "snowtrace",
         chainId: 43114,
+        urls: {
+          apiURL: "https://api.routescan.io/v2/network/mainnet/evm/43114/etherscan",
+          browserURL: "https://avalanche.routescan.io"
+        }
+      },
+      {
+        network: "arbitrumSepolia",
+        chainId: 421614,
         urls: {
           apiURL: "https://api.routescan.io/v2/network/mainnet/evm/43114/etherscan",
           browserURL: "https://avalanche.routescan.io"

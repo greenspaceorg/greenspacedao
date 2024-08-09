@@ -45,7 +45,20 @@ Here's a breakdown of how it was built:
 
 ## Where we deployed to/contract details
 
-We created and deployed our smart contracts on the Base Sepolia and Optimism Sepolia Chains.
+We created and deployed our smart contracts on the Arbitrum Sepolia, Base Sepolia and Optimism Sepolia Chains.
+
+
+### Arbitrum Sepolia Testnet Chain
+
+1. Treasury contract - 0x9E1eF5A92C9Bf97460Cd00C0105979153EA45b27 - [View source code](https://github.com/greenspaceorg/greenspacedao/blob/main/backend/contracts/Treasury.sol) | [View on Arbitrum Sepolia Chain](https://sepolia.arbiscan.io/address/0x9E1eF5A92C9Bf97460Cd00C0105979153EA45b27)
+
+2. CommunityNetwork contract - 0x3a65168B746766066288B83417329a7F901b5569 - [View source code](https://github.com/greenspaceorg/greenspacedao/blob/main/backend/contracts/CommunityNetwork.sol) | [View on Arbitrum Sepolia  Chain](0x3a65168B746766066288B83417329a7F901b5569)
+
+3. NutritionistNFT contract - 0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0 - [View source code](https://github.com/greenspaceorg/greenspacedao/blob/main/backend/contracts/NutritionistNFT.sol) | [View on Arbitrum Sepolia  Chain](https://sepolia.arbiscan.io/address/0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0)
+
+4. UserNFT contract - 0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A - [View source code](https://github.com/greenspaceorg/greenspacedao/blob/main/backend/contracts/UserNFT.sol) | [View on Arbitrum Sepolia  Chain](https://sepolia.arbiscan.io/address/0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A)
+
+
 
 ### Base Sepolia Testnet Chain
 
@@ -53,9 +66,9 @@ We created and deployed our smart contracts on the Base Sepolia and Optimism Sep
 
 2. CommunityNetwork contract - 0x3a65168B746766066288B83417329a7F901b5569 - [View source code](https://github.com/degencodebeast/greenspace-backdrop/blob/main/backend/contracts/CommunityNetwork.sol) | [View on Base Chain](https://base-sepolia.blockscout.com/address/0x3a65168B746766066288B83417329a7F901b5569)
 
-3. NutritionistNFT contract - 0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A - [View source code](https://github.com/degencodebeast/greenspace-backdrop/blob/main/backend/contracts/NutritionistNFT.sol) | [View on Base Chain](https://base-sepolia.blockscout.com/address/0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A)
+3. NutritionistNFT contract - 0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0 - [View source code](https://github.com/degencodebeast/greenspace-backdrop/blob/main/backend/contracts/NutritionistNFT.sol) | [View on Base Chain](https://base-sepolia.blockscout.com/address/0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A)
 
-4. UserNFT contract - 0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0 - [View source code](https://github.com/degencodebeast/greenspace-backdrop/blob/main/backend/contracts/UserNFT.sol) | [View on Base Chain](https://base-sepolia.blockscout.com/address/0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0)
+4. UserNFT contract - 0x6D919b8dC30BEf41b56Aa8b18b2052c9459F8E9A - [View source code](https://github.com/degencodebeast/greenspace-backdrop/blob/main/backend/contracts/UserNFT.sol) | [View on Base Chain](https://base-sepolia.blockscout.com/address/0xA39d26482B5c226Fd02A5f3e159C72ee03d63Fc0)
 
 
 ### Optimism Sepolia Testnet Chain
